@@ -44,7 +44,7 @@ header {
     background-color: var(--bg-color);
     opacity: 0;
     transform: translateY(-20px);
-    animation: fadeInDown 1s forwards 0.5s;
+    animation: fadeInDown 0.5s forwards 0.5s;
 }
 
 @keyframes fadeInDown {
@@ -66,8 +66,9 @@ header {
     text-decoration: none;
     font-size: 30px;
 }
+
 .logo img {
-   width: 100px;
+    width: 100px;
     height: 50px;
 }
 
@@ -133,7 +134,7 @@ header {
 .slides {
     display: flex;
     height: 100%;
-    transition: transform 0.8s ease-in-out;
+    transition: transform 0.5s ease-in-out;
 }
 
 .slides img {
@@ -180,7 +181,7 @@ header {
     background-color: var(--bg-color);
     opacity: 0;
     transform: translateY(30px);
-    animation: fadeInUp 1.5s forwards 1s;
+    animation: fadeInUp 0.5s forwards 1s;
 }
 
 @keyframes fadeInUp {
@@ -212,7 +213,7 @@ header {
     cursor: pointer;
     transition: all 0.3s;
     opacity: 0;
-    animation: fadeIn 1s forwards 2s;
+    animation: fadeIn 0.5s forwards 2s;
 }
 
 @keyframes fadeIn {
@@ -233,7 +234,7 @@ section {
     padding: 5rem 5%;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 section.visible {
@@ -249,7 +250,7 @@ section h2 {
 }
 
 
-.catalog, .portfolio, .gallery, .reviews {
+.catalog, .gallery, .reviews {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -258,7 +259,7 @@ section h2 {
 
 .card {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: space-between;
     background-color: #111;
     width: 250px;
@@ -266,7 +267,7 @@ section h2 {
     border: 1px solid var(--gold-color);
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .card.visible {
@@ -285,24 +286,154 @@ section h2 {
 .card img {
     width: 100%;
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
     margin-bottom: 15px;
-    background: linear-gradient(45deg, #333, #555);
+    background-color: var(--bg-color);
 }
 
-/*.card button {*/
-/*    padding: 10px 20px;*/
-/*    background-color: var(--accent-color);*/
-/*    color: var(--text-color);*/
-/*    border: none;*/
-/*    cursor: pointer;*/
-/*    transition: box-shadow 0.3s;*/
-/*    margin-top: auto;*/
-/*}*/
+.portfolio .image-container img {
+    width: 150px;
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
 
-/*.card button:hover {*/
-/*    box-shadow: 0 0 10px var(--gold-color);*/
-/*}*/
+.portfolio .image-container img:hover {
+    transform: scale(1.05);
+}
+
+/* Portfolio specific styles */
+.portfolio {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.portfolio-card {
+    background: var(--bg-color);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--gold-color);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.portfolio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-card p {
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    color: var(--text-color);
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--text-color);
+    font-family: 'Edu NSW ACT Cursive', cursive;
+}
+
+.portfolio .image-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.portfolio .image-container img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+    border: 3px solid transparent;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    flex: 0 0 auto;
+}
+
+.portfolio .image-container img:hover {
+    transform: scale(1.08) rotate(1deg);
+    border-color: var(--gold-color);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow: hidden;
+}
+
+.modal-content {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+    border-radius: 10px;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.modal-content.zoomed {
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+    z-index: 1001;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1002;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+/* Make images clickable */
+.portfolio img,
+.gallery img {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.portfolio img:hover,
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
 
 .review {
     background-color: #222;
@@ -312,7 +443,7 @@ section h2 {
     width: 250px;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .review.visible {
@@ -332,10 +463,6 @@ section h2 {
     background: linear-gradient(45deg, #333, #555);
 }
 
-/*.review h3 {*/
-/*    color: var(--gold-color);*/
-/*    margin: 10px 0;*/
-/*}*/
 
 .review p {
     font-size: 0.9em;
@@ -358,7 +485,7 @@ section h2 {
     margin-top: 2rem;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .contact-container.visible {
@@ -385,7 +512,7 @@ section h2 {
     align-items: center;
     opacity: 0;
     transform: translateX(-20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .contact-details p.visible {
@@ -402,7 +529,7 @@ section h2 {
 .social-links {
     opacity: 0;
     transform: translateX(-20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .social-links.visible {
@@ -439,7 +566,7 @@ section h2 {
     margin-bottom: 1.5rem;
     opacity: 0;
     transform: translateX(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .form-group.visible {
@@ -480,7 +607,7 @@ section h2 {
     transition: all 0.3s;
     opacity: 0;
     transform: translateY(20px);
-    animation: fadeInUp 0.8s forwards 1.5s;
+    animation: fadeInUp 0.5s forwards 0.5s;
 }
 
 .submit-btn:hover {
@@ -494,7 +621,7 @@ footer {
     text-align: center;
     border-top: 1px solid var(--gold-color);
     opacity: 0;
-    animation: fadeIn 1.5s forwards 2s;
+    animation: fadeIn 0.5s forwards 0.5s;
 }
 
 
@@ -595,5 +722,43 @@ ol li::before {
 
     .contact-container {
         flex-direction: column;
+    }
+
+    .center {
+        margin: 20px 15px;
+        padding: 25px 20px;
+    }
+
+    .center p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .close {
+        top: 15px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 30px;
+    }
+
+    .modal-content {
+        max-width: 95%;
+        max-height: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .close {
+        top: 10px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        font-size: 25px;
+    }
+
+    .modal-content {
+        max-width: 98%;
+        max-height: 98%;
     }
 }

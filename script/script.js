@@ -104,3 +104,79 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.transitionDelay = `${index * 0.1}s`;
     });
 });
+
+
+
+
+// Modal functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.querySelector('.modal-overlay');
+    const modalImg = document.getElementById('modalImage');
+    const closeBtn = document.querySelector('.close');
+
+    // Function to open modal at clicked position
+    function openModal(clickedImg) {
+        // Get clicked image position
+        const rect = clickedImg.getBoundingClientRect();
+
+        // Set modal display
+        modal.style.display = 'block';
+
+        // Set image source and initial position
+        modalImg.src = clickedImg.src;
+        modalImg.className = 'modal-content';
+
+        // Position the image at clicked location
+        modalImg.style.position = 'absolute';
+        modalImg.style.top = rect.top + 'px';
+        modalImg.style.left = rect.left + 'px';
+
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
+
+        // Zoom to center after a small delay
+        setTimeout(() => {
+            modalImg.classList.add('zoomed');
+        }, 50);
+    }
+
+    // Function to close modal
+    function closeModal() {
+        modal.style.display = 'none';
+        modalImg.classList.remove('zoomed');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close button event
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close when clicking on modal background or image
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal || e.target === modalImg) {
+            closeModal();
+        }
+    });
+
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'block') {
+            closeModal();
+        }
+    });
+
+    // Add click events to portfolio images
+    const portfolioImages = document.querySelectorAll('#portfolio img');
+    portfolioImages.forEach(img => {
+        img.addEventListener('click', function() {
+            openModal(this);
+        });
+    });
+
+    // Add click events to gallery images
+    const galleryImages = document.querySelectorAll('#gallery img');
+    galleryImages.forEach(img => {
+        img.addEventListener('click', function() {
+            openModal(this);
+        });
+    });
+});
