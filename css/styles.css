@@ -291,17 +291,7 @@ section h2 {
     background-color: var(--bg-color);
 }
 
-.portfolio .image-container img {
-    width: 150px;
-    margin: 5px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
 
-.portfolio .image-container img:hover {
-    transform: scale(1.05);
-}
 
 /* Portfolio specific styles */
 .portfolio {
@@ -348,8 +338,8 @@ section h2 {
 }
 
 .portfolio .image-container img {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
