@@ -32,6 +32,7 @@ body {
     }
 }
 
+/* header styles */
 header {
     display: flex;
     justify-content: space-between;
@@ -123,6 +124,7 @@ header {
     color: var(--accent-color);
 }
 
+/* slider styles*/
 .slider {
     position: relative;
     width: 100%;
@@ -171,6 +173,7 @@ header {
     right: 20px;
 }
 
+/* hero styles */
 .hero {
     display: flex;
     flex-direction: column;
@@ -230,6 +233,7 @@ header {
     transform: scale(1.05);
 }
 
+/* section styles */
 section {
     padding: 5rem 5%;
     opacity: 0;
@@ -249,7 +253,7 @@ section h2 {
     text-align: center;
 }
 
-
+/* catalog styles*/
 .catalog, .gallery, .reviews {
     display: flex;
     flex-wrap: wrap;
@@ -292,8 +296,7 @@ section h2 {
 }
 
 
-
-/* Portfolio specific styles */
+/* Portfolio styles */
 .portfolio {
     display: flex;
     flex-direction: column;
@@ -349,12 +352,32 @@ section h2 {
     flex: 0 0 auto;
 }
 
+.imgMod img:nth-child(9) {
+    object-position: top;
+}
+
+.modStyle img:nth-child(3),
+.modStyle img:nth-child(5),
+.modStyle img:nth-child(8),
+.modStyle img:nth-child(10),
+.modStyle img:nth-child(11) {
+    object-position: top;
+}
+
 .portfolio .image-container img:hover {
     transform: scale(1.08) rotate(1deg);
     border-color: var(--gold-color);
     box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
 }
 
+.portfolio img:hover,
+.gallery img:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+/* modal styles */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -412,19 +435,7 @@ section h2 {
     transition: all 0.3s ease;
 }
 
-/* Make images clickable */
-.portfolio img,
-.gallery img {
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.portfolio img:hover,
-.gallery img:hover {
-    transform: scale(1.05);
-}
-
-
+/* reviews styles*/
 .review {
     background-color: #222;
     border: 1px solid var(--gold-color);
@@ -464,6 +475,7 @@ section h2 {
     color: var(--gold-color);
 }
 
+/* contact styles*/
 #contact p {
     font-size: 1.2em;
     font-weight: bold;
@@ -606,15 +618,6 @@ section h2 {
     transform: scale(1.05);
 }
 
-footer {
-    padding: 40px 20px;
-    text-align: center;
-    border-top: 1px solid var(--gold-color);
-    opacity: 0;
-    animation: fadeIn 0.5s forwards 0.5s;
-}
-
-
 .center {
     max-width: 900px;
     margin: 40px auto;
@@ -673,6 +676,14 @@ ol li::before {
     border-radius: 50%;
     line-height: 25px;
     box-shadow: 0 0 8px var(--gold-color);
+}
+
+footer {
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid var(--gold-color);
+    opacity: 0;
+    animation: fadeIn 0.5s forwards 0.5s;
 }
 
 

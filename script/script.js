@@ -4,10 +4,12 @@ const prev = document.querySelector(".prev");
 const next = document.querySelector(".next");
 const menu = document.getElementById("menu");
 const nav = document.querySelector(".nav_links");
-const links  = document.querySelectorAll(".nav_links a");
+const links = document.querySelectorAll(".nav_links a");
 
+//slider
 let index = 0;
-function slideShow (i) {
+
+function slideShow(i) {
     if (i < 0) {
         index = images.length - 1;
     } else if (i >= images.length) {
@@ -17,22 +19,24 @@ function slideShow (i) {
     }
     slides.style.transform = `translateX(${-index * 100}vw)`;
 }
+
 prev.addEventListener('click', () => slideShow(index - 1));
 next.addEventListener('click', () => slideShow(index + 1));
 
+//menu burger
 menu.addEventListener("click", () => {
     nav.classList.toggle("active");
     menu.classList.toggle("open");
 });
-
+// remove navLinks
 links.forEach(link => {
     link.addEventListener("click", (e) => {
         menu.classList.remove("open")
         nav.classList.remove("active");
     })
 })
-
-document.addEventListener('DOMContentLoaded', function() {
+//animation
+document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelectorAll('section');
     const cards = document.querySelectorAll('.card');
     const reviews = document.querySelectorAll('.review');
@@ -89,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
             contactContainer.classList.add('visible');
         }
     }
+
     checkVisibility();
     window.addEventListener('scroll', checkVisibility);
 
@@ -106,35 +111,22 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
-
 // Modal functionality
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const modal = document.querySelector('.modal-overlay');
     const modalImg = document.getElementById('modalImage');
     const closeBtn = document.querySelector('.close');
 
-    // Function to open modal at clicked position
+    // Function to open modal
     function openModal(clickedImg) {
-        // Get clicked image position
         const rect = clickedImg.getBoundingClientRect();
-
-        // Set modal display
         modal.style.display = 'block';
-
-        // Set image source and initial position
         modalImg.src = clickedImg.src;
         modalImg.className = 'modal-content';
-
-        // Position the image at clicked location
         modalImg.style.position = 'absolute';
         modalImg.style.top = rect.top + 'px';
         modalImg.style.left = rect.left + 'px';
-
-        // Prevent body scroll
         document.body.style.overflow = 'hidden';
-
-        // Zoom to center after a small delay
         setTimeout(() => {
             modalImg.classList.add('zoomed');
         }, 50);
@@ -151,31 +143,31 @@ document.addEventListener('DOMContentLoaded', function() {
     closeBtn.addEventListener('click', closeModal);
 
     // Close when clicking on modal background or image
-    modal.addEventListener('click', function(e) {
+    modal.addEventListener('click', function (e) {
         if (e.target === modal || e.target === modalImg) {
             closeModal();
         }
     });
 
     // Close with Escape key
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && modal.style.display === 'block') {
             closeModal();
         }
     });
 
-    // Add click events to portfolio images
+    // portfolio images
     const portfolioImages = document.querySelectorAll('#portfolio img');
     portfolioImages.forEach(img => {
-        img.addEventListener('click', function() {
+        img.addEventListener('click', function () {
             openModal(this);
         });
     });
 
-    // Add click events to gallery images
+    //  gallery images
     const galleryImages = document.querySelectorAll('#gallery img');
     galleryImages.forEach(img => {
-        img.addEventListener('click', function() {
+        img.addEventListener('click', function () {
             openModal(this);
         });
     });
