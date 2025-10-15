@@ -17,7 +17,7 @@ function slideShow(i) {
     } else {
         index = i;
     }
-    slides.style.transform = `translateX(${-index * 100}vw)`;
+    slides.style.transform = `translateX(${-index * 100}%)`;
 }
 
 prev.addEventListener('click', () => slideShow(index - 1));
